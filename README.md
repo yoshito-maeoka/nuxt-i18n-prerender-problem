@@ -1,63 +1,45 @@
-# Nuxt 3 Minimal Starter
+# @nuxt/i18n resource problem
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+this repository aims to represent a bug, which occurs under an enviroment with nuxt (3.5.2) + @nuxt/i18n (8.0.0-beta.12).
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
+## Problematic
+with ```nuxt dev``` works.
+```
+❯ yarn dev
+yarn run v1.22.18
+$ nuxt dev
+  > Local:    http://localhost:3000/
+        :
+        :
+✔ Nuxt Devtools is enabled v0.5.5 ℹ Vite client warmed up in 710ms
+✔ Nitro built in 379 ms
+✔ Vite server hmr 21 files in 822.595ms
 ```
 
-## Development Server
+![en](./assets/img/en.png)
+![ja](./assets/img/ja.png)
 
-Start the development server on `http://localhost:3000`:
 
-```bash
-# npm
-npm run dev
+but with ```nuxt preview``` does not work.
 
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
 ```
+❯ yarn preview
+yarn run v1.22.18
+$ nuxt preview
+Nuxi 3.5.3
+ℹ Node.js version: 19.4.0
+ℹ Preset: node-server
+ℹ Working dir: .output
+ℹ Loading .env. This will not be loaded when running the server in production.
+ℹ Starting preview command: node ./server/index.mjs
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
+Listening http://[::]:3000
+@nuxtjs/i18n Cannot find module '/Users/an-user/work/nuxt-i18n-prerender-problem/.output/public/__i18n__/prerender/e525609c.js' imported from /Users/an-user/work/nuxt-i18n-prerender-problem/.output/server/chunks/app/_nuxt/i18n.options-810bdec2.mjs
+[nuxt] [request error] [unhandled] [500] Cannot read properties of null (reading 'e525609c')
+  at ./server/chunks/nitro/node-server.mjs:813:26
+  at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+  at async Object.handler (./server/node_modules/h3/dist/index.mjs:1255:19)
+  at async Server.toNodeHandle (./server/node_modules/h3/dist/index.mjs:1330:7)
 ```
+![ng](./assets/img/ng.png)
 
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
